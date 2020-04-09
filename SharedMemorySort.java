@@ -6,7 +6,7 @@ public class SharedMemorySort {
 	
 	
 	static int tempFileCount = 0, countOfThreads = 4;
-	static long inputFileSize, sizeOfChunk, sizeOfMemory = 100000000, startTime, endTime;
+	static long inputFileSize, sizeOfChunk, sizeOfMemory = 80000000, startTime, endTime;
 	
 	
 	static double timeElapsed;
@@ -30,6 +30,7 @@ public class SharedMemorySort {
 		endTime = System.currentTimeMillis();
 		
 		timeElapsed = (double)(endTime - startTime);
+		System.out.println("Throughput"+(((SharedMemorySort.inputFileSize)/1000)/timeElapsed)*2);
 		System.out.println("Total time taken for external sorting: "+ (timeElapsed/1000) + " seconds");
 	}
 }
@@ -43,7 +44,7 @@ class Merger extends Thread
 		int numberOfTempFiles = SharedMemorySort.tempFileCount, index = 0, minimum;
 		BufferedReader [] br = new BufferedReader[numberOfTempFiles];
 		
-		 
+		
 		long counter = SharedMemorySort.inputFileSize/100;
 		String min = "";
 		
@@ -83,6 +84,7 @@ class ManageChunks {
 		long chunkSize;
 		
 		SharedMemorySort.inputFileSize = file.length();
+		System.out.println(SharedMemorySort.inputFileSize);
 		SharedMemorySort.sizeOfChunk = getChunkSize(SharedMemorySort.inputFileSize);
 		
 		System.out.println("Splitting and sorting input file "+ SharedMemorySort.inputFileName + " into chunks");
