@@ -1,11 +1,11 @@
 #!/bin/bash
-echo "---------Generating 4GB Random Data of ASCII values---------"
-./gensort -a 40000000 4gb
+echo "---------Generating 64GB Random Data of ASCII values---------"
+./gensort -a 640000000 64gb
 echo "---------Running MySort.java File on 1GB data---------"
 javac SharedMemorySort.java
-java SharedMemorySort 4gb 4GbOutput
-echo "---------Validating 4GbOutput file for correct sorting by MySort---------"
-./valsort 4GbOutput
+java SharedMemorySort 64gb 64GbOutput
+echo "---------Validating 1GbOutput file for correct sorting by MySort---------"
+./valsort 64GbOutput
 #start=$(date +%s.%N)
 #echo "---------Running Linux Sort on same 4GB data---------"
 #LC_ALL=C sort -S 8G --parallel=4 -o 4GbLinuxSort 4gb

@@ -30,7 +30,6 @@ public class SharedMemorySort {
 		endTime = System.currentTimeMillis();
 		
 		timeElapsed = (double)(endTime - startTime);
-		System.out.println("Throughput"+(((SharedMemorySort.inputFileSize)/1000)/timeElapsed)*2);
 		System.out.println("Total time taken for external sorting: "+ (timeElapsed/1000) + " seconds");
 	}
 }
@@ -116,6 +115,7 @@ class ManageChunks {
 			totalTimeElapsed = (end - start) / 1000;
 			
 			System.out.println("Total time to create and sort: " + totalTimeElapsed);
+			System.out.println("Throughput"+((SharedMemorySort.inputFileSize)/1000)/totalTimeElapsed);
 			System.out.println("No. of temporary files that are created: " + SharedMemorySort.tempFileCount);
 			
 			Thread [] thread = new Thread[SharedMemorySort.countOfThreads];
